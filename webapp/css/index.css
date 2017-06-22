@@ -1,0 +1,14 @@
+
+html, body, #root {
+  height: 100%;
+}
+
+.page{
+  padding:0 30px;
+}
+
+.btn_group{
+  padding-top:10px;
+}
+
+.btn_group>.btn:last-child{margin-left:5px;}
