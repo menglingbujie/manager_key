@@ -1,6 +1,7 @@
 # manager_key
 
 mongodb server // 启动提供数据库
+
 node server // 启动提供服务
 
 webpack server // 启动提供本地开发
