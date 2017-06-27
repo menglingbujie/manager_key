@@ -43,8 +43,9 @@
   "scripts": {
     "build": "atool-build",
     "lint": "eslint --ext .js,.jsx src/",
-    "start": "dora --plugins webpack",
+    "dev": "dora --plugins webpack",
     "test": "atool-test-mocha ./**/__tests__/*-test.js",
-    "server": "node ./bin/www"
+    "server": "node ./bin/www",
+    "dbserver":"mongod --dbpath=./data"
   }
 }

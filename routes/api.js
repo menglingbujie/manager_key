@@ -44,10 +44,10 @@ router.post('/key-back', function(req, res, next) {
 
 //创建借钥匙订单
 router.post('/create-key',function(req, res, next){
-  console.log(req.body.username);
-  console.log(req.body.phone);
-  console.log(req.body.keyid);
-  console.log(req.body.keyfor);
+  // console.log(req.body.username);
+  // console.log(req.body.phone);
+  // console.log(req.body.keyid);
+  // console.log(req.body.keyfor);
 
   MongoClient.connect(urldb,function(err,db){
     const coll = db.collection("keys-unback");
