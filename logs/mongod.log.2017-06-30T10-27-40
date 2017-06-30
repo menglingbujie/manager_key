@@ -1,0 +1,45 @@
+2017-06-30T18:25:18.145+0800 I CONTROL  [main] Trying to start Windows service 'MongoDB'
+2017-06-30T18:25:18.146+0800 I CONTROL  [initandlisten] MongoDB starting : pid=7720 port=27017 dbpath=D:\work\git\self\manager_key\data 64-bit host=ELEX-20170120LQ
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] db version v3.4.5
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] git version: 520b8f3092c48d934f0cd78ab5f40fe594f96863
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1u-fips  22 Sep 2016
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] modules: none
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] build environment:
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-06-30T18:25:18.147+0800 I CONTROL  [initandlisten] options: { config: "d:\Program Files\MongoDB\Server\3.4\mongod.cfg", service: true, storage: { dbPath: "D:\work\git\self\manager_key\data" }, systemLog: { destination: "file", path: "D:\work\git\self\manager_key\logs\mongod.log" } }
+2017-06-30T18:25:18.150+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3539M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2017-06-30T18:25:18.986+0800 I CONTROL  [initandlisten] 
+2017-06-30T18:25:18.986+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2017-06-30T18:25:18.986+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2017-06-30T18:25:18.986+0800 I CONTROL  [initandlisten] 
+2017-06-30T18:25:18.986+0800 I CONTROL  [initandlisten] Hotfix KB2731284 or later update is not installed, will zero-out data files.
+2017-06-30T18:25:18.986+0800 I CONTROL  [initandlisten] 
+2017-06-30T18:25:21.075+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'D:/work/git/self/manager_key/data/diagnostic.data'
+2017-06-30T18:25:21.411+0800 I INDEX    [initandlisten] build index on: admin.system.version properties: { v: 2, key: { version: 1 }, name: "incompatible_with_version_32", ns: "admin.system.version" }
+2017-06-30T18:25:21.411+0800 I INDEX    [initandlisten] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2017-06-30T18:25:21.430+0800 I INDEX    [initandlisten] build index done.  scanned 0 total records. 0 secs
+2017-06-30T18:25:21.432+0800 I COMMAND  [initandlisten] setting featureCompatibilityVersion to 3.4
+2017-06-30T18:25:21.432+0800 I NETWORK  [thread1] waiting for connections on port 27017
+2017-06-30T18:25:21.432+0800 I STORAGE  [initandlisten] Service running
+2017-06-30T18:26:51.242+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:62224 #1 (1 connection now open)
+2017-06-30T18:26:51.249+0800 I NETWORK  [conn1] received client metadata from 127.0.0.1:62224 conn1: { driver: { name: "nodejs", version: "2.2.29" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "6.1.7601" }, platform: "Node.js v8.1.2, LE, mongodb-core: 2.1.13" }
+2017-06-30T18:26:51.286+0800 I -        [conn1] end connection 127.0.0.1:62224 (1 connection now open)
+2017-06-30T18:27:08.833+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:62256 #2 (1 connection now open)
+2017-06-30T18:27:08.835+0800 I NETWORK  [conn2] received client metadata from 127.0.0.1:62256 conn2: { driver: { name: "nodejs", version: "2.2.29" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "6.1.7601" }, platform: "Node.js v8.1.2, LE, mongodb-core: 2.1.13" }
+2017-06-30T18:27:09.126+0800 I COMMAND  [conn2] command keys_manager.keys-unback command: insert { insert: "keys-unback", documents: [ { username: "Marylin", phone: "13800138301", keyid: "1001", keyfor: "Buy", _id: ObjectId('5956277cc6dc071860428517') } ], ordered: true } ninserted:1 keysInserted:1 numYields:0 reslen:44 locks:{ Global: { acquireCount: { r: 3, w: 3 } }, Database: { acquireCount: { w: 2, W: 1 } }, Collection: { acquireCount: { w: 2 } } } protocol:op_query 283ms
+2017-06-30T18:27:09.132+0800 I -        [conn2] end connection 127.0.0.1:62256 (1 connection now open)
+2017-06-30T18:27:09.168+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:62259 #3 (1 connection now open)
+2017-06-30T18:27:09.169+0800 I NETWORK  [conn3] received client metadata from 127.0.0.1:62259 conn3: { driver: { name: "nodejs", version: "2.2.29" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "6.1.7601" }, platform: "Node.js v8.1.2, LE, mongodb-core: 2.1.13" }
+2017-06-30T18:27:09.179+0800 I -        [conn3] end connection 127.0.0.1:62259 (1 connection now open)
+2017-06-30T18:27:31.915+0800 I CONTROL  [serviceShutdown] got SERVICE_CONTROL_STOP request from Windows Service Control Manager, will terminate after current cmd ends
+2017-06-30T18:27:31.915+0800 I NETWORK  [serviceShutdown] shutdown: going to close listening sockets...
+2017-06-30T18:27:31.915+0800 I NETWORK  [serviceShutdown] closing listening socket: 436
+2017-06-30T18:27:31.915+0800 I NETWORK  [serviceShutdown] shutdown: going to flush diaglog...
+2017-06-30T18:27:31.916+0800 I FTDC     [serviceShutdown] Shutting down full-time diagnostic data capture
+2017-06-30T18:27:31.918+0800 I STORAGE  [serviceShutdown] WiredTigerKVEngine shutting down
+2017-06-30T18:27:32.157+0800 I STORAGE  [serviceShutdown] shutdown: removing fs lock...
+2017-06-30T18:27:32.157+0800 I CONTROL  [serviceShutdown] now exiting
