@@ -12,6 +12,7 @@ class App extends React.Component {
       phone:"",
       keyid:"",
       keyfor:"",
+      key:"",
     },
     unbackKeyList: [],
   }
@@ -19,6 +20,7 @@ class App extends React.Component {
     this.state.userinfo[type]=evt.target.value;
   }
   doAddKey = (e)=>{
+    this.state.userinfo['key']=(new Date()).getTime();
     $.post("http://localhost:3000/api/create-key",this.state.userinfo,(resp)=>{
       this.setState({addFormVisible:false});
       this.fetchKeyUnbackList();
@@ -46,22 +48,38 @@ class App extends React.Component {
   }
   render () {
     const state = this.state;
-    let tableColumns = [{
-      title:"钥匙用途",
-      dataIndex:"keyfor",
-      key:"keyfor",
-    },{
-      title:"钥匙编号",
-      dataIndex:"keyid",
-      key:"keyid",
-    },{
-      title:"手机号码",
-      dataIndex:"phone",
-      key:"phone",
-    },{
-      title:"用户名",
-      dataIndex:"username",
-      key:"username",
+    let tableColumns = [
+      {
+        key:1,
+        title:"用户名",
+        dataIndex:"username",
+        key:"username",
+      },{
+        key:2,
+        title:"手机号码",
+        dataIndex:"phone",
+        key:"phone",
+      },{
+        key:3,
+        title:"钥匙编号",
+        dataIndex:"keyid",
+        key:"keyid",
+      },{
+        key:4,
+        title:"钥匙用途",
+        dataIndex:"keyfor",
+        key:"keyfor",
+      },{
+      key:5,
+      title:"操作",
+      dataIndex:"control",
+      key:"control",
+      render:(text,record)=>{
+        <span>
+          <a href="javascript:void(0)">编辑</a>
+          <a href="javascript:void(0)">删除</a>
+        </span>
+      }
     }];
     return (
       <div className="page">
@@ -80,7 +98,7 @@ class App extends React.Component {
           <Button className="btn" onClick={this.showAddKeyForm}><Icon type="plus"/>添加</Button>
         </div>
         <br />
-        <Table columns={tableColumns} dataSource={state.unbackKeyList}></Table>
+      <Table columns={tableColumns} dataSource={state.unbackKeyList}></Table>
 
         <Modal title="有人来借钥匙啦" visible={state.addFormVisible}
           onOk={this.doAddKey}
@@ -90,29 +108,29 @@ class App extends React.Component {
           >
           <Form>
             <Form.Item>
-              <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} 
+              <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />}
                 placeholder="你是谁"
                 onChange={this.formChange.bind(this,'username')} />
             </Form.Item>
 
             <Form.Item>
-              <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />} 
+              <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />}
               placeholder="联系方式"
               onChange={this.formChange.bind(this,'phone')} />
             </Form.Item>
 
             <Form.Item>
-              <Input prefix={<Icon type="key" style={{ fontSize: 13 }} />} 
+              <Input prefix={<Icon type="key" style={{ fontSize: 13 }} />}
               placeholder="钥匙编号"
               onChange={this.formChange.bind(this,"keyid")} />
             </Form.Item>
 
             <Form.Item>
-              <Input prefix={<Icon type="file-text  " style={{ fontSize: 13 }} />} 
+              <Input prefix={<Icon type="file-text  " style={{ fontSize: 13 }} />}
               placeholder="你拿钥匙作甚？"
               onChange={this.formChange.bind(this,"keyfor")} />
             </Form.Item>
-            
+
             <Form.Item></Form.Item>
           </Form>
         </Modal>
