@@ -1,10 +1,7 @@
 {
   "name": "keymanager",
   "private": true,
-  "version": "0.0.0",
-  "entry": {
-    "index": "./webapp/js/index.js"
-  },
+  "version": "1.0.0",
   "dependencies": {
     "antd": "^2.1.0",
     "body-parser": "~1.15.2",
