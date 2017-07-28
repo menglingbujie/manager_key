@@ -4,35 +4,39 @@ import '../css/index.css';
 import { Menu, Icon, Button , Input,Table,Modal,Form} from 'antd';
 import $ from "jquery";
 class App extends React.Component {
-  state={
-    addFormVisible: false,
-    currentMenuItem: 'young',
-    userinfo:{
-      username:"",
-      phone:"",
-      keyid:"",
-      keyfor:"",
-      key:"",
-    },
-    unbackKeyList: [],
+  constructor(props){
+    super(props);
+
+    this.state={
+      addFormVisible: false,
+      currentMenuItem: 'young',
+      userinfo:{
+        username:"",
+        phone:"",
+        keyid:"",
+        keyfor:"",
+        key:"",
+      },
+      unbackKeyList: [],
+    }
   }
-  formChange = (type,evt)=>{
+  formChange(type,evt){
     this.state.userinfo[type]=evt.target.value;
   }
-  doAddKey = (e)=>{
+  doAddKey(){
     this.state.userinfo['key']=(new Date()).getTime();
     $.post("http://localhost:3000/api/create-key",this.state.userinfo,(resp)=>{
       this.setState({addFormVisible:false});
       this.fetchKeyUnbackList();
     });
   }
-  cancelAddKey = (e) =>{
+  cancelAddKey(){
     this.setState({addFormVisible:false})
   }
-  showAddKeyForm = (e) =>{
+  showAddKeyForm(){
     this.setState({addFormVisible: true});
   }
-  clickMenuItem=(e)=>{
+  clickMenuItem(){
     this.setState({currentMenuItem:e.key});
   }
   fetchKeyUnbackList(){
@@ -70,17 +74,18 @@ class App extends React.Component {
         dataIndex:"keyfor",
         key:"keyfor",
       },{
-      key:5,
-      title:"操作",
-      dataIndex:"control",
-      key:"control",
-      render:(text,record)=>{
-        <span>
-          <a href="javascript:void(0)">编辑</a>
-          <a href="javascript:void(0)">删除</a>
-        </span>
+        key:5,
+        title:"操作",
+        dataIndex:"control",
+        key:"control",
+        render: (text, record) => (
+          <span>
+            <a href="javascript:void(0)">编辑</a>
+            <a href="javascript:void(0)">删除</a>
+          </span>
+        ),
       }
-    }];
+    ];
     return (
       <div className="page">
         <header>
