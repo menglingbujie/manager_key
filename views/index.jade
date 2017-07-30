@@ -1,7 +1,8 @@
-extends layout
+extends layout/layout.jade
 block styles
-  link(href="/dist/css/index.css" rel="stylesheet")
+  link(href="/dist/css/index.css" rel="stylesheet" type="text/css")
 block content
   #root
-  script(src="/dist/js/vendor.js")
+    
+block scripts
   script(src="/dist/js/index.js")

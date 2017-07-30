@@ -25,7 +25,7 @@ class App extends React.Component {
   }
   doAddKey(){
     this.state.userinfo['key']=(new Date()).getTime();
-    $.post("http://localhost:3000/api/create-key",this.state.userinfo,(resp)=>{
+    $.post("/api/create-key",this.state.userinfo,(resp)=>{
       this.setState({addFormVisible:false});
       this.fetchKeyUnbackList();
     });
@@ -36,16 +36,22 @@ class App extends React.Component {
   showAddKeyForm(){
     this.setState({addFormVisible: true});
   }
-  clickMenuItem(){
-    this.setState({currentMenuItem:e.key});
+  clickMenuItem(d){
+    this.setState({currentMenuItem:d.key});
   }
   fetchKeyUnbackList(){
-    $.get("http://localhost:3000/api/get-keys-unback",(resp)=>{
+    $.get("/api/get-keys-unback",(resp)=>{
       if(!resp.ret){
         return;
       }
       this.setState({unbackKeyList:resp.data});
     });
+  }
+  doBackKey(d,evt){
+    console.log("doBackKey item==",d,evt)
+  }
+  showMore(d,evt){
+    console.log("showMore item==",d,evt)
   }
   componentWillMount(){
     this.fetchKeyUnbackList();
@@ -70,18 +76,22 @@ class App extends React.Component {
         key:"keyid",
       },{
         key:4,
-        title:"钥匙用途",
-        dataIndex:"keyfor",
+        title:"借用时间",
+        dataIndex:"keystart_date",
         key:"keyfor",
       },{
         key:5,
+        title:"归还时间",
+        dataIndex:"keyend_date"
+      },{
+        key:6,
         title:"操作",
         dataIndex:"control",
         key:"control",
         render: (text, record) => (
-          <span>
-            <a href="javascript:void(0)">编辑</a>
-            <a href="javascript:void(0)">删除</a>
+          <span className="btn_control">
+            <a className="btn edit" onClick={this.doBackKey.bind(this,record)} href="javascript:void(0)">归还</a>
+          <a className="btn delete" onClick={this.showMore.bind(this,record)} href="javascript:void(0)">更多</a>
           </span>
         ),
       }
@@ -92,7 +102,7 @@ class App extends React.Component {
           <h1>钥匙管理系统</h1>
           <hr /><br />
           <Menu
-            onClick={this.clickMenuItem} mode="horizontal"
+            onClick={this.clickMenuItem.bind(this)} mode="horizontal"
             selectedKeys={[state.currentMenuItem]}>
               <Menu.Item key="young"><Icon type="user" />使用中的钥匙</Menu.Item>
               <Menu.Item key="old"><Icon type="team" />已归还的钥匙</Menu.Item>
@@ -100,14 +110,14 @@ class App extends React.Component {
           </header>
           <div className="btn_group">
             <Input addonAfter={<Icon type="search" />} defaultValue="" />
-          <Button className="btn" onClick={this.showAddKeyForm}><Icon type="plus"/>添加</Button>
+          <Button className="btn" onClick={this.showAddKeyForm.bind(this)}><Icon type="plus"/>添加</Button>
         </div>
         <br />
       <Table columns={tableColumns} dataSource={state.unbackKeyList}></Table>
 
         <Modal title="有人来借钥匙啦" visible={state.addFormVisible}
-          onOk={this.doAddKey}
-          onCancel={this.cancelAddKey}
+          onOk={this.doAddKey.bind(this)}
+          onCancel={this.cancelAddKey.bind(this)}
           okText="准了"
           cancelText="鬼才借"
           >

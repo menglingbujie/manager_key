@@ -7,7 +7,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const projectDir = path.resolve(__dirname, './');
 module.exports = function (args){
   let entryMap = {
-    index: "./webapp/js/index.js"
+    index: "./webapp/js/index.js",
+    user: "./webapp/js/user.js",
   }
   let config = {
     entry: entryMap,
@@ -20,7 +21,7 @@ module.exports = function (args){
     module: {
       rules: [
         {test: /\.(js|jsx)$/, exclude: /node_modules/, use: 'babel-loader'},
-        {test:/\.(less|css)$/,use:ExtractTextPlugin.extract({use:['css-loader','less-loader'],fallback: 'style-loader'})},
+        {test:/\.(css|less)$/,use:ExtractTextPlugin.extract({use:['css-loader','less-loader'],fallback: 'style-loader'})},
       ]
     },
     plugins: [

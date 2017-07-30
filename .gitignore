@@ -6,4 +6,5 @@ node_modules
 mongod.log.*
 *.turtle
 diagnostic.data
-./data
+data
+public/dist

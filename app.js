@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/user');
 var api = require('./routes/api');
-
+var session = require('express-session');
 var app = express();
 
 // view engine setup
@@ -23,6 +23,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var MongoStore = require("connect-mongo")(session);
+app.use(session({
+	secret:"keymanagermenglingbujie",
+	resave: false,
+	saveUninitialized: true,
+	cookie: {maxAge:60*1000*30}, // 30 minus
+	store: new MongoStore({
+		url:"mongodb://localhost:27017/sessionstore",
+	})
+}));
+
 app.all("*",function(req,res,next){
 	res.header("Access-Control-Allow-Origin","*");
 	res.header("Access-Control-Allow-Headers","X-Requested-With");
@@ -32,13 +43,14 @@ app.all("*",function(req,res,next){
 })
 
 app.use('/', index);
+app.use('/user', user);
 app.use("/api",api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+	var err = new Error("Not Found");
   err.status = 404;
-  next(err);
+  res.render('common/404');
 });
 
 // error handler
@@ -49,7 +61,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('common/error');
 });
 
 module.exports = app;

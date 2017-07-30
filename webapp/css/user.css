@@ -1,0 +1,12 @@
+/*@color:#red;*/
+@import "../../node_modules/antd/dist/antd.min.css";
+@import "./color.less";
+@height:200px;
+#root{
+  border:2px solid @color_green;
+  height:200px;
+
+  >h1{
+    font-size:20px;color:@color_red;
+  }
+}
