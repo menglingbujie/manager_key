@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   if(!req.session.user){
     return res.redirect("/user");
   }
-  return res.render('index');
+  return res.render('index',{userinfo:JSON.stringify(req.session.user)});
 });
 
 module.exports = router;

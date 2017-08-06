@@ -1,19 +1,23 @@
 @import "../../node_modules/antd/dist/antd.min.css";
-html, body, #root {
-  height: 100%;
-}
-
+@import "./common.less";
 .page{
   padding:0 30px;
-}
+  .btn_group{
+    padding-top:10px;
+  }
 
-.btn_group{
-  padding-top:10px;
-}
+  .btn_group>.btn:last-child{margin-left:5px;}
 
-.btn_group>.btn:last-child{margin-left:5px;}
+  .btn_control>.btn{
+    margin-left:10px;
+  }
+  .btn_control>.btn:first-child{margin-left:0;}
 
-.btn_control>.btn{
-  margin-left:10px;
+  >header{
+    position:relative;
+    >.userinfo{
+      position:absolute;right:0;bottom:5px;
+      >.uname{font-size:12px;font-style:normal;margin-right:5px;}
+    }
+  }
 }
-.btn_control>.btn:first-child{margin-left:0;}

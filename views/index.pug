@@ -1,8 +1,9 @@
-extends layout/layout.jade
+extends layout/layout
 block styles
   link(href="/dist/css/index.css" rel="stylesheet" type="text/css")
 block content
   #root
-    
+  script.
+    var gUserInfo = JSON.parse("#{userinfo}".replace(/&quot;/g,'"'));
 block scripts
   script(src="/dist/js/index.js")

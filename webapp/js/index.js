@@ -3,6 +3,18 @@ import ReactDOM from 'react-dom';
 import '../css/index.css';
 import { Menu, Icon, Button , Input,Table,Modal,Form} from 'antd';
 import $ from "jquery";
+function UserInfo(props){
+  function doLogout(evt){
+    evt.preventDefault();
+    $.post('/api/user/logout',(resp)=>{
+      location.replace("/");
+    });
+  }
+  return <div className="userinfo">
+    <em className="uname">你好，{props.userinfo.cellphone}</em>
+  <Button shape="circle" icon="logout" type="primary" onClick={doLogout} size="small"></Button>
+  </div>;
+}
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -100,20 +112,21 @@ class App extends React.Component {
       <div className="page">
         <header>
           <h1>钥匙管理系统</h1>
-          <hr /><br />
-          <Menu
-            onClick={this.clickMenuItem.bind(this)} mode="horizontal"
-            selectedKeys={[state.currentMenuItem]}>
-              <Menu.Item key="young"><Icon type="user" />使用中的钥匙</Menu.Item>
-              <Menu.Item key="old"><Icon type="team" />已归还的钥匙</Menu.Item>
-            </Menu>
-          </header>
-          <div className="btn_group">
-            <Input addonAfter={<Icon type="search" />} defaultValue="" />
+          <UserInfo userinfo={gUserInfo} />
+          <hr />
+        </header>
+        <Menu
+          onClick={this.clickMenuItem.bind(this)} mode="horizontal"
+          selectedKeys={[state.currentMenuItem]}>
+            <Menu.Item key="young"><Icon type="user" />使用中的钥匙</Menu.Item>
+            <Menu.Item key="old"><Icon type="team" />已归还的钥匙</Menu.Item>
+        </Menu>
+        <div className="btn_group">
+          <Input addonAfter={<Icon type="search" />} defaultValue="" />
           <Button className="btn" onClick={this.showAddKeyForm.bind(this)}><Icon type="plus"/>添加</Button>
         </div>
         <br />
-      <Table columns={tableColumns} dataSource={state.unbackKeyList}></Table>
+        <Table columns={tableColumns} dataSource={state.unbackKeyList}></Table>
 
         <Modal title="有人来借钥匙啦" visible={state.addFormVisible}
           onOk={this.doAddKey.bind(this)}

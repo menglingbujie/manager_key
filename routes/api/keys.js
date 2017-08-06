@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require("mongodb").MongoClient;
-var urldb = "mongodb://localhost:27017/keys_manager";
+var urldb = "mongodb://localhost:27017/keys_{DB_NAME}";
 
 // 获取未归还钥匙列表
 router.get('/get-keys-unback', function(req, res, next) {
-  MongoClient.connect(urldb,function(err,db){
+  MongoClient.connect(urldb.replace(/{DB_NAME}/,req.session.user.cellphone),function(err,db){
      const coll = db.collection("keys-unback");
      coll.find({}).toArray(function(err,docs){
         let resp = {ret:0,data:[],msg:""};
@@ -44,13 +44,9 @@ router.post('/key-back', function(req, res, next) {
 
 //创建借钥匙订单
 router.post('/create-key',function(req, res, next){
-  // console.log(req.body.username);
-  // console.log(req.body.phone);
-  // console.log(req.body.keyid);
-  // console.log(req.body.keyfor);
-
-  MongoClient.connect(urldb,function(err,db){
+  MongoClient.connect(urldb.replace(/{DB_NAME}/,req.session.user.cellphone),function(err,db){
     const coll = db.collection("keys-unback");
+    _.assing(req.body,{create_date:(new Date()).getTime(),back_date:(new Date()).getTime()});
     coll.insertMany([req.body],function(err,result){
       let resp = {
         ret:0,
