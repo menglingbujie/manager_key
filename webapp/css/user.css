@@ -3,10 +3,10 @@
 @import "./color.less";
 @import "./common.less";
 #root{
-  position: relative;
+  position: relative;height:100%;
   >.container{
     width:300px;overflow:hidden;
-    margin:50% auto 0;transform:translateY(-50%);
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
     >.title{text-align: center;margin-bottom:30px;overflow:hidden;}
   }
   >.container.register{

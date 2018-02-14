@@ -50,7 +50,7 @@ router.post('/register',function(req, res, next){
   console.log(req.body);
   let cellphone = req.body.cellphone||"";
   MongoClient.connect(urldb,function(err,db){
-    const coll = db.collection(cellphone);// 每个用户都对应一个自己的cellphone数据表
+    const coll = db.collection("user"+cellphone);// 每个用户都对应一个自己的cellphone数据表
     coll.find({cellphone:cellphone}).toArray(function(err,docs){
       let resp = {ret:0,data:[],msg:""};
       if(err){
